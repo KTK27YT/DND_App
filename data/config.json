@@ -1,0 +1,61 @@
+{
+    "Adventure_League": [
+        "Curse of Strahd",
+        "Descent into Avernus",
+        "Elemental Evil",
+        "Rage of Demons",
+        "Rime of the Frostmaiden",
+        "Storm King's Thunder",
+        "Tales from the Yawning Portal",
+        "Tomb of Annihilation",
+        "Tyranny of Dragons",
+        "Waterdeep Adventures"
+    ],
+    "Class": [
+        "Artificer",
+        "Barbarian",
+        "Bard",
+        "Cleric",
+        "Druid",
+        "Fighter",
+        "Monk",
+        "Paladin",
+        "Ranger",
+        "Rogue",
+        "Sorcerer",
+        "Warlock",
+        "Wizard"
+    ],
+    "Faction": [
+        "Emerald Enclave",
+        "Harpers",
+        "Lords' Alliance",
+        "Order of the Gauntlet",
+        "Zhentarim"
+    ],
+    "Race": [
+        "Air Genasi",
+        "Drow",
+        "Earth Genasi",
+        "Firbolg",
+        "Fire Genasi",
+        "Forest Gnome",
+        "High Elf",
+        "Tiefling",
+        "Water Genasi",
+        "Triton",
+        "Yuan-Ti"
+    ],
+    "Ravnica Guild": [
+        "Azorius",
+        "Boros",
+        "Dimir",
+        "Golgari",
+        "Gruul",
+        "Izzet",
+        "Orzhov",
+        "Rakdos",
+        "Selesnya",
+        "Simic"
+    ]
+}
