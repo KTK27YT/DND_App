@@ -6,6 +6,9 @@ const filename = './data/profile.json';
 const file = require(filename);
 
 
+
+//Why are they all Async?
+
 async function profile_save(selected_profile) {
     return new Promise((resolve, reject) => {
         try {
@@ -27,19 +30,81 @@ async function profile_save(selected_profile) {
                     console.log(JSON.stringify(file));
                     console.log('writing to ' + filename);
                 });
+                alert("Profile saved");
+                location.reload();
                 resolve("Profile saved");
             } catch (error) {
                 console.log("While saving the profile section an error occured: " + error);
                 alert(error);
+                location.reload();
                 reject(error);
             };
         } catch (error) {
             console.log("While saving the profile section an error occured: " + error);
             alert(error);
+            location.reload();
             reject(error);
         }
 
 
     });
 
+}
+
+async function stats_save(selected_profile) {
+
+    return new Promise((resolve, reject) => {
+        try {
+            let new_str = $('#strengthinput').val();
+            let new_dex = $('#dexterityinput').val();
+            let new_con = $('#constitutioninput').val();
+            let new_int = $('#intelligenceinput').val();
+            let new_wis = $('#wisdominput').val();
+            let new_cha = $('#charismainput').val();
+            let new_money = $('#moneyinput').val();
+            console.log(new_str, new_dex, new_con, new_int, new_wis, new_cha, new_money);
+            file[selected_profile][0]["str"] = parseInt(new_str, 10);
+            file[selected_profile][0]["dex"] = parseInt(new_dex, 10);
+            file[selected_profile][0]["con"] = parseInt(new_con, 10);
+            file[selected_profile][0]["int"] = parseInt(new_int, 10);
+            file[selected_profile][0]["wis"] = parseInt(new_wis, 10);
+            file[selected_profile][0]["cha"] = parseInt(new_cha, 10);
+            file[selected_profile][0]["money"] = parseInt(new_money, 10);
+            fs.writeFile(filename, JSON.stringify(file, null, 2), function writeJSON(err) {
+                if (err) return console.log(err);
+                console.log(JSON.stringify(file));
+                console.log('writing to ' + filename);
+            });
+            alert("stats saved");
+            location.reload();
+            resolve("Stats saved");
+        } catch (error) {
+            console.log("While saving the stats section an error occured: " + error);
+            alert(error);
+            location.reload();
+            reject(error);
+        }
+    });
+}
+
+async function skill_save(selected_profile) {
+    console.log(window.skills);
+    return new Promise((resolve, reject) => {
+        try {
+            file[selected_profile][0]['skills'] = window.skills;
+            fs.writeFile(filename, JSON.stringify(file, null, 2), function writeJSON(err) {
+                if (err) return console.log(err);
+                console.log(JSON.stringify(file));
+                console.log('writing to ' + filename);
+            });
+            alert("skills saved");
+            location.reload();
+            resolve("Skills saved");
+        } catch (error) {
+            console.log("While saving the skills section an error occured: " + error);
+            alert(error);
+            location.reload();
+            reject(error);
+        }
+    });
 }

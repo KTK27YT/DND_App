@@ -1,7 +1,7 @@
 {
   "William": [
     {
-      "money": 50,
+      "money": 50000,
       "items": [
         "Abacus",
         "Acid",
@@ -18,18 +18,14 @@
       "xp": 1000,
       "hp": 6,
       "ac": 10,
-      "str": 8,
-      "dex": 14,
-      "con": 14,
-      "int": 16,
-      "wis": 10,
-      "cha": 12,
+      "str": 80,
+      "dex": 140,
+      "con": 140,
+      "int": 160,
+      "wis": 100,
+      "cha": 120,
       "skills": [
-        "Arcana",
-        "History",
-        "Insight",
         "Investigation",
-        "Medicine",
         "Religion"
       ],
       "spells": [
