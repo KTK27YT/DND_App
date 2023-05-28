@@ -80,3 +80,7 @@ function bootstrap_input(type, id, placeholder, value) {
         "<input type=\"" + type + "\" class=\"form-control\" id=\"" + id + "\" placeholder=\"" + placeholder + "\" value=\"" + value + "\">" +
         "</div>";
 }
+
+function clean_string(string) {
+    return string.replace(/\s/g, "-").toLowerCase();
+}

@@ -108,3 +108,30 @@ async function skill_save(selected_profile) {
         }
     });
 }
+
+function spell_save(selected_profile) {
+    window.spelleditor = false;
+    var spell_added = [];
+    return new Promise((resolve, reject) => {
+        try {
+            //spell_input
+            for (let i = 0; i < window.spells.length; i++) {
+                spell_added.push(window.spells[i]);
+            };
+            $('.spell_input').map(function () {
+                spell_added.push($(this).val());
+            });
+            file[selected_profile][0]['spells'] = spell_added;
+            fs.writeFile(filename, JSON.stringify(file, null, 2), function writeJSON(err) {
+                if (err) return console.log(err);
+                console.log(JSON.stringify(file));
+                console.log('writing to ' + filename);
+            });
+            alert("spells saved");
+            location.reload();
+            resolve("Spells saved");
+        } catch (error) {
+            alert(error);
+        }
+    });
+}

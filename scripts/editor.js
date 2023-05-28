@@ -1,5 +1,7 @@
 // The Goal of this script is to provide a simple editor
 
+
+// Creates an event listener to check if any edit buttons were clicked and route them
 $('.edit_btn').on('click', async function () {
     try {
         const person = await construct_profile($('#name').text());
@@ -56,7 +58,7 @@ async function skill_editor(person) {
     $('.skill-info > table').slideUp();
     try {
         const skills_list = await construct_config("Skills");
-        var skill_check_html = "<div class='list-group'>"
+        var skill_check_html = "<div class='list-group skills'>"
         $.each(skills_list, function (key, value) {
             var classlist = "";
             if (skills.includes(value)) {
@@ -73,7 +75,7 @@ async function skill_editor(person) {
         return error;
     }
     $('.skills_editor_btns').slideDown();
-    $('.list-group-item').on('click', function () {
+    $('.skills > .list-group-item').on('click', function () {
         let classlist = $(this).attr("class");
         let index = $(this).attr("id");
         if (classlist.includes("active")) {
@@ -95,8 +97,53 @@ async function skill_editor(person) {
     })
 }
 
-function spells_editor() {
-
+async function spell_editor(person) {
+    window.spells = person.spells;
+    window.spelleditor = true;
+    console.log(window.spells);
+    $('.spellslist').slideUp();
+    try {
+        window.spells_list = await construct_config("Spells");
+        $.each(window.spells, function (key, value) {
+            let spell_element_id = "#" + clean_string(value);
+            $(spell_element_id).html(value + "<button style='margin-left: 15px' type=\"button\" class=\"btn btn-outline-danger spell_btn_delete\" value='" + value + "'>" +
+                "<img src=\"./icons/general/trash.svg\" alt=\"trash\" width=\"16\" height=\"16\">" +
+                "</button>");
+        });
+    } catch (error) {
+        console.log(error);
+        alert(error);
+        return error;
+    }
+    $('.spells_editor_btns').slideDown();
+    $('.spells > .list-group-item').on('click', function () {
+        let classlist = $(this).attr("class");
+        let index = $(this).attr("id");
+        if (classlist.includes("active")) {
+            console.log("active drop");
+            $(this).removeClass("active");
+            console.log($(this).attr("id"));
+            //drop the array element
+            window.spells = $.grep(spells, function (value) {
+                return value != String(index);
+            });
+            console.log(window.spells);
+        } else {
+            console.log("inactive add");
+            $(this).addClass("active");
+            window.spells.push(index);
+            console.log(window.spells);
+        }
+    });
+    $('.spell_btn_delete').on('click', function () {
+        let spell = $(this).attr("value");
+        console.log(spell);
+        window.spells = $.grep(spells, function (value) {
+            return value != String(spell);
+        });
+        console.log(window.spells);
+        $(this).parent().remove();
+    });
 }
 
 function equipment_editor() {
@@ -200,7 +247,14 @@ function skillchecklist() {
     }
 }
 
-
+function spell_add() {
+    var spells_dropdown_list = "<select class='form-select spell_input' id='spellsinput'>";
+    $.each(spells_list, function (key, value) {
+        spells_dropdown_list += "<option value='" + value + "'>" + value + "</option>";
+    });
+    spells_dropdown_list += "</select>";
+    $('#spellslist').append(spells_dropdown_list);
+}
 
 //This function routes the edit buttons to the correct editor
 function editor_profile_router(value, person) {
@@ -236,3 +290,30 @@ function editor_profile_router(value, person) {
             break;
     };
 }
+
+//Add a new dropdown/row to element
+$('.add_btn').on('click', function () {
+    switch (this.value) {
+        case "SpellsAdd":
+            spell_add();
+            break;
+        case "EquipmentAdd":
+            equipment_add();
+            break;
+        case "LanguageAdd":
+            language_add();
+            break;
+        case "FeatureAdd":
+            feature_add();
+            break;
+        case "TraitAdd":
+            trait_add();
+            break;
+        case "IdealAdd":
+            ideal_add();
+            break;
+        default:
+            break;
+    };
+});
+

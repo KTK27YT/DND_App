@@ -1,5 +1,6 @@
 // This handles all the shit inside index.html
 
+window.spelleditor = false;
 $(document).ready(function () {
     console.log("Yes");
     deactivate_loader();
@@ -81,43 +82,46 @@ function loadprofile(person) {
     //Spells Section
     $.each(person.spells, function (key, value) {
         $('#spellslist').append(
-            "<button type='button' class='list-group-item list-group-item-action' value='" + value + "'>" + value + "</button>"
+            "<button type='button' class='list-group-item list-group-item-action' id='" + clean_string(value) + "' value='" + value + "'>" + value + "</button>"
         );
     });
     //For spells Buttons (Its an event listener)
     $(".spells-info > .list-group > #spellslist > button").click(function (event) {
-        activate_loader();
-        // convert it to lowercase for API call
-        let spellname = this.value;
-        spellname = spellname.replace(/\s/g, "-").toLowerCase();
-        async function display_spellalert(spell) {
-            try {
-                let spelldata = await construct_spellsinfo(spell);
-                console.log(spelldata)
-                console.log("display_alert : recieved");
+        if (!window.spelleditor) {
+            activate_loader();
+            // convert it to lowercase for API call
+            let spellname = this.value;
+            spellname = spellname.replace(/\s/g, "-").toLowerCase();
+            async function display_spellalert(spell) {
+                try {
+                    let spelldata = await construct_spellsinfo(spell);
+                    console.log(spelldata)
+                    console.log("display_alert : recieved");
 
-                alert(
-                    "Name: " + spelldata.name + "\n" +
-                    "Level: " + spelldata.level + "\n" +
-                    "Range: " + spelldata.range + "\n" +
-                    "Components: " + spelldata.components + "\n" +
-                    "Duration: " + spelldata.duration + "\n" +
-                    "School: " + spelldata.school.name + "\n" +
-                    "Description: " + spelldata.desc + "\n" +
-                    "Higher Level: " + spelldata.higher_level + "\n"
-                );
-            } catch (error) {
-                if (error == "Not Found") {
-                    deactivate_loader();
-                    alert("Spell not found from API")
-                } else {
-                    deactivate_loader();
-                    alert("An error has occured more details: " + error);
+                    alert(
+                        "Name: " + spelldata.name + "\n" +
+                        "Level: " + spelldata.level + "\n" +
+                        "Range: " + spelldata.range + "\n" +
+                        "Components: " + spelldata.components + "\n" +
+                        "Duration: " + spelldata.duration + "\n" +
+                        "School: " + spelldata.school.name + "\n" +
+                        "Description: " + spelldata.desc + "\n" +
+                        "Higher Level: " + spelldata.higher_level + "\n"
+                    );
+                } catch (error) {
+                    if (error == "Not Found") {
+                        deactivate_loader();
+                        alert("Spell not found from API")
+                    } else {
+                        deactivate_loader();
+                        alert("An error has occured more details: " + error);
+                    }
+
                 }
-
             }
+            display_spellalert(spellname);
         }
-        display_spellalert(spellname);
+
     });
     //Equipment Section
     $.each(person.equipment, function (key, value) {
