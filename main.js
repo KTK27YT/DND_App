@@ -5,9 +5,14 @@ app.whenReady().then(() => {
         width: 800,
         height: 600,
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            contextIsolation: false,
+            enableRemoteModule: true,
         }
     });
-
     win.loadFile('index.html');
 });
+
+app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') app.quit()
+})
