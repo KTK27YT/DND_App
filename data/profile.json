@@ -1,181 +1,181 @@
 {
-    "William": [
-        {
-            "money": 50,
-            "items": [
-                "Abacus",
-                "Acid",
-                "Alchemist's Fire"
-            ],
-            "name": "William",
-            "race": "Drow",
-            "gender": "male",
-            "class": "Wizard",
-            "Adventure_League": "Curse of Strahd",
-            "faction": "Zhentarim",
-            "Ravnica Guild": "Azorius",
-            "level": 1,
-            "xp": 0,
-            "hp": 6,
-            "ac": 10,
-            "str": 8,
-            "dex": 14,
-            "con": 14,
-            "int": 16,
-            "wis": 10,
-            "cha": 12,
-            "skills": [
-                "Arcana",
-                "History",
-                "Insight",
-                "Investigation",
-                "Medicine",
-                "Religion"
-            ],
-            "spells": [
-                "Acid Splash",
-                "Chill Touch",
-                "Dancing Lights",
-                "Fire Bolt",
-                "Friends",
-                "Light",
-                "Mage Hand",
-                "Mending",
-                "Message",
-                "Minor Illusion",
-                "Poison Spray",
-                "Prestidigitation",
-                "Ray of Frost",
-                "Shocking Grasp",
-                "True Strike"
-            ],
-            "equipment": [
-                "Spellbook",
-                "Quarterstaff",
-                "Component Pouch",
-                "Scholar's Pack",
-                "Arcane Focus"
-            ],
-            "languages": [
-                "Common",
-                "Dwarvish",
-                "Elvish",
-                "Giant",
-                "Gnomish",
-                "Goblin",
-                "Halfling",
-                "Orc"
-            ],
-            "features": [
-                "Arcane Recovery",
-                "Spellcasting",
-                "Arcane Tradition"
-            ],
-            "traits": [
-                "I'm used to helping out those who aren't as smart as I am, and I patiently explain anything and everything to others.",
-                "There's nothing I like more than a good mystery.",
-                "I'm willing to listen to every side of an argument before I make my own judgment.",
-                "I... speak... slowly... when talking... to idiots... which... almost... everyone... is... compared... to me.",
-                "I am horribly, horribly awkward in social situations.",
-                "I'm convinced that people are always trying to steal my secrets."
-            ],
-            "ideals": [
-                "Knowledge. The path to power and self-improvement is through knowledge.",
-                "Beauty. What is beautiful points us beyond itself toward what is true.",
-                "Logic. Emotions must not cloud our logical thinking.",
-                "No Limits. Nothing should fetter the infinite possibility inherent in all existence.",
-                "Power. Knowledge is the path to power and domination.",
-                "Self-Improvement. The goal of a life of study is the betterment of oneself."
-            ]
-        }
-    ],
-    "John": [
-        {
-            "money": 500,
-            "items": [
-                "Abacus"
-            ],
-            "name": "John",
-            "race": "Triton",
-            "gender": "female",
-            "class": "Bard",
-            "Adventure_League": "Elemental Evil",
-            "faction": "Harpers",
-            "Ravnica Guild": "Orzhov",
-            "level": 3,
-            "xp": 0,
-            "hp": 6,
-            "ac": 10,
-            "str": 8,
-            "dex": 14,
-            "con": 14,
-            "int": 16,
-            "wis": 10,
-            "cha": 12,
-            "skills": [
-                "Arcana",
-                "History",
-                "Insight",
-                "Investigation",
-                "Medicine",
-                "Religion"
-            ],
-            "spells": [
-                "Acid Splash",
-                "Blade Ward",
-                "Chill Touch",
-                "Dancing Lights",
-                "Fire Bolt",
-                "Friends",
-                "Light",
-                "Mage Hand",
-                "Mending",
-                "Message",
-                "Minor Illusion",
-                "Poison Spray",
-                "Prestidigitation",
-                "Ray of Frost",
-                "Shocking Grasp",
-                "True Strike"
-            ],
-            "equipment": [
-                "Spellbook",
-                "Quarterstaff",
-                "Component Pouch",
-                "Scholar's Pack",
-                "Arcane Focus"
-            ],
-            "languages": [
-                "Common",
-                "Dwarvish",
-                "Elvish",
-                "Giant",
-                "Gnomish",
-                "Goblin",
-                "Halfling",
-                "Orc"
-            ],
-            "features": [
-                "Arcane Recovery",
-                "Spellcasting",
-                "Arcane Tradition"
-            ],
-            "traits": [
-                "I'm used to helping out those who aren't as smart as I am, and I patiently explain anything and everything to others.",
-                "There's nothing I like more than a good mystery.",
-                "I'm willing to listen to every side of an argument before I make my own judgment.",
-                "I... speak... slowly... when talking... to idiots... which... almost... everyone... is... compared... to me.",
-                "I am horribly, horribly awkward in social situations.",
-                "I'm convinced that people are always trying to steal my secrets."
-            ],
-            "ideals": [
-                "Knowledge. The path to power and self-improvement is through knowledge.",
-                "Beauty. What is beautiful points us beyond itself toward what is true.",
-                "Logic. Emotions must not cloud our logical thinking.",
-                "No Limits. Nothing should fetter the infinite possibility inherent in all existence.",
-                "Power. Knowledge is the path to power and domination.",
-                "Self-Improvement. The goal of a life of study is the betterment of oneself."
-            ]
-        }
-    ]
+  "William": [
+    {
+      "money": 50,
+      "items": [
+        "Abacus",
+        "Acid",
+        "Alchemist's Fire"
+      ],
+      "name": "William",
+      "race": "Air Genasi",
+      "gender": "male",
+      "class": "Wizard",
+      "Adventure_League": "Curse of Strahd",
+      "faction": "Zhentarim",
+      "Ravnica Guild": "Azorius",
+      "level": 1000,
+      "xp": 1000,
+      "hp": 6,
+      "ac": 10,
+      "str": 8,
+      "dex": 14,
+      "con": 14,
+      "int": 16,
+      "wis": 10,
+      "cha": 12,
+      "skills": [
+        "Arcana",
+        "History",
+        "Insight",
+        "Investigation",
+        "Medicine",
+        "Religion"
+      ],
+      "spells": [
+        "Acid Splash",
+        "Chill Touch",
+        "Dancing Lights",
+        "Fire Bolt",
+        "Friends",
+        "Light",
+        "Mage Hand",
+        "Mending",
+        "Message",
+        "Minor Illusion",
+        "Poison Spray",
+        "Prestidigitation",
+        "Ray of Frost",
+        "Shocking Grasp",
+        "True Strike"
+      ],
+      "equipment": [
+        "Spellbook",
+        "Quarterstaff",
+        "Component Pouch",
+        "Scholar's Pack",
+        "Arcane Focus"
+      ],
+      "languages": [
+        "Common",
+        "Dwarvish",
+        "Elvish",
+        "Giant",
+        "Gnomish",
+        "Goblin",
+        "Halfling",
+        "Orc"
+      ],
+      "features": [
+        "Arcane Recovery",
+        "Spellcasting",
+        "Arcane Tradition"
+      ],
+      "traits": [
+        "I'm used to helping out those who aren't as smart as I am, and I patiently explain anything and everything to others.",
+        "There's nothing I like more than a good mystery.",
+        "I'm willing to listen to every side of an argument before I make my own judgment.",
+        "I... speak... slowly... when talking... to idiots... which... almost... everyone... is... compared... to me.",
+        "I am horribly, horribly awkward in social situations.",
+        "I'm convinced that people are always trying to steal my secrets."
+      ],
+      "ideals": [
+        "Knowledge. The path to power and self-improvement is through knowledge.",
+        "Beauty. What is beautiful points us beyond itself toward what is true.",
+        "Logic. Emotions must not cloud our logical thinking.",
+        "No Limits. Nothing should fetter the infinite possibility inherent in all existence.",
+        "Power. Knowledge is the path to power and domination.",
+        "Self-Improvement. The goal of a life of study is the betterment of oneself."
+      ]
+    }
+  ],
+  "John": [
+    {
+      "money": 500,
+      "items": [
+        "Abacus"
+      ],
+      "name": "John",
+      "race": "Triton",
+      "gender": "female",
+      "class": "Bard",
+      "Adventure_League": "Elemental Evil",
+      "faction": "Harpers",
+      "Ravnica Guild": "Orzhov",
+      "level": 3,
+      "xp": 0,
+      "hp": 6,
+      "ac": 10,
+      "str": 8,
+      "dex": 14,
+      "con": 14,
+      "int": 16,
+      "wis": 10,
+      "cha": 12,
+      "skills": [
+        "Arcana",
+        "History",
+        "Insight",
+        "Investigation",
+        "Medicine",
+        "Religion"
+      ],
+      "spells": [
+        "Acid Splash",
+        "Blade Ward",
+        "Chill Touch",
+        "Dancing Lights",
+        "Fire Bolt",
+        "Friends",
+        "Light",
+        "Mage Hand",
+        "Mending",
+        "Message",
+        "Minor Illusion",
+        "Poison Spray",
+        "Prestidigitation",
+        "Ray of Frost",
+        "Shocking Grasp",
+        "True Strike"
+      ],
+      "equipment": [
+        "Spellbook",
+        "Quarterstaff",
+        "Component Pouch",
+        "Scholar's Pack",
+        "Arcane Focus"
+      ],
+      "languages": [
+        "Common",
+        "Dwarvish",
+        "Elvish",
+        "Giant",
+        "Gnomish",
+        "Goblin",
+        "Halfling",
+        "Orc"
+      ],
+      "features": [
+        "Arcane Recovery",
+        "Spellcasting",
+        "Arcane Tradition"
+      ],
+      "traits": [
+        "I'm used to helping out those who aren't as smart as I am, and I patiently explain anything and everything to others.",
+        "There's nothing I like more than a good mystery.",
+        "I'm willing to listen to every side of an argument before I make my own judgment.",
+        "I... speak... slowly... when talking... to idiots... which... almost... everyone... is... compared... to me.",
+        "I am horribly, horribly awkward in social situations.",
+        "I'm convinced that people are always trying to steal my secrets."
+      ],
+      "ideals": [
+        "Knowledge. The path to power and self-improvement is through knowledge.",
+        "Beauty. What is beautiful points us beyond itself toward what is true.",
+        "Logic. Emotions must not cloud our logical thinking.",
+        "No Limits. Nothing should fetter the infinite possibility inherent in all existence.",
+        "Power. Knowledge is the path to power and domination.",
+        "Self-Improvement. The goal of a life of study is the betterment of oneself."
+      ]
+    }
+  ]
 }

@@ -1,21 +1,45 @@
 //This saves all the data from the editor to the json
 
-async function profile_save(selected_profile) {
-    let level = $('#levelinput').val();
-    let xp = $('#xpinput').val();
-    let race = $('#raceinput').val();
-    console.log(level, xp, race);
+//we declare these constants as all functions use them
+const fs = require('fs');
+const filename = './data/profile.json';
+const file = require(filename);
 
-    //Commit the changes respectively
-    try {
-        const person = await construct_profile(selected_profile);
-        person.level = level;
-        person.xp = xp;
-        person.race = race;
-        console.log(person);
-        localStorage.setItem(selected_profile, JSON.stringify(person));
-    } catch (error) {
-        console.log("construct_profile : Promise Rejected");
-        alert(error);
-    };
+
+async function profile_save(selected_profile) {
+    return new Promise((resolve, reject) => {
+        try {
+            let new_level = $('#levelinput').val();
+            let new_xp = $('#xpinput').val();
+            let new_race = $('#raceinput').val();
+            console.log(new_level, new_xp, new_race);
+
+            //Commit the changes respectively
+            try {
+                console.log(selected_profile);
+                console.log(file);
+                console.log(file[selected_profile]);
+                file[selected_profile][0]["level"] = parseInt(new_level, 10);
+                file[selected_profile][0]["xp"] = parseInt(new_xp, 10);
+                file[selected_profile][0]["race"] = new_race;
+                fs.writeFile(filename, JSON.stringify(file, null, 2), function writeJSON(err) {
+                    if (err) return console.log(err);
+                    console.log(JSON.stringify(file));
+                    console.log('writing to ' + filename);
+                });
+                resolve("Profile saved");
+            } catch (error) {
+                console.log("While saving the profile section an error occured: " + error);
+                alert(error);
+                reject(error);
+            };
+        } catch (error) {
+            console.log("While saving the profile section an error occured: " + error);
+            alert(error);
+            reject(error);
+        }
+
+
+    });
+
 }

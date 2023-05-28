@@ -103,11 +103,34 @@ function save_profile_router(value, selected_profile) {
 };
 
 
+
 //adds event listeners to all save buttons
-$('.save_btn').on('click', function () {
+$('.save_btn').on('click', async function () {
+    $(this).html("<span class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>");
     let id = this.value;
     console.log(id);
-    save_profile_router(id, $('#name').text());
+    try {
+        console.log($('#name').text());
+        let profile_saver = await save_profile_router(id, $('#name').text());
+        $(this).html("Save");
+        activate_loader();
+        $('.profile_editor_btns').slideUp();
+        toast("DND", "Profile Saved!");
+        console.log($('#name').text());
+        initprofile($('#name').text());
+        deactivate_loader();
+        alert("Profile Saved!");
+        location.reload();
+    } catch (error) {
+        console.log(error);
+        alert(error);
+        return error;
+    }
 });
 
+
+//adds event listeners to all cancel buttons
+$('.cancel_btn').on('click', function () {
+    location.reload();
+});
 
