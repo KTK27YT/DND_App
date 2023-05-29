@@ -8,9 +8,9 @@
         "Alchemist's Fire"
       ],
       "name": "William",
-      "race": "Air Genasi",
+      "race": "High Elf",
       "gender": "male",
-      "class": "Wizard",
+      "class": "Paladin",
       "Adventure_League": "Curse of Strahd",
       "faction": "Zhentarim",
       "Ravnica Guild": "Azorius",
@@ -32,45 +32,35 @@
         "Acid Splash",
         "Chill Touch",
         "Create or Destroy Water",
-        "Detect Poison and Disease"
+        "Detect Poison and Disease",
+        "Charm Person"
       ],
       "equipment": [
-        "Spellbook",
-        "Quarterstaff",
         "Component Pouch",
         "Scholar's Pack",
-        "Arcane Focus"
+        "Javelin",
+        "Wand"
       ],
       "languages": [
         "Common",
         "Dwarvish",
-        "Elvish",
-        "Giant",
-        "Gnomish",
         "Goblin",
-        "Halfling",
-        "Orc"
+        "Halfling"
       ],
       "features": [
-        "Arcane Recovery",
-        "Spellcasting",
-        "Arcane Tradition"
+        "Intimidating Presence",
+        "Primal Path"
       ],
       "traits": [
-        "I'm used to helping out those who aren't as smart as I am, and I patiently explain anything and everything to others.",
         "There's nothing I like more than a good mystery.",
         "I'm willing to listen to every side of an argument before I make my own judgment.",
-        "I... speak... slowly... when talking... to idiots... which... almost... everyone... is... compared... to me.",
-        "I am horribly, horribly awkward in social situations.",
-        "I'm convinced that people are always trying to steal my secrets."
+        "I'm convinced that people are always trying to steal my secrets.",
+        "I am John"
       ],
       "ideals": [
         "Knowledge. The path to power and self-improvement is through knowledge.",
         "Beauty. What is beautiful points us beyond itself toward what is true.",
-        "Logic. Emotions must not cloud our logical thinking.",
-        "No Limits. Nothing should fetter the infinite possibility inherent in all existence.",
-        "Power. Knowledge is the path to power and domination.",
-        "Self-Improvement. The goal of a life of study is the betterment of oneself."
+        "I am secretly a furry"
       ]
     }
   ],

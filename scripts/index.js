@@ -1,6 +1,7 @@
 // This handles all the shit inside index.html
 
 window.spelleditor = false;
+window.equipmenteditor = false;
 $(document).ready(function () {
     console.log("Yes");
     deactivate_loader();
@@ -50,8 +51,10 @@ function loadprofile(person) {
     //Profile Section
     $('.char-info > h5').textContent = String(person.name);
     $("#raceimage").attr("src", "icons/Race/" + person.race + ".svg");
+    $("#classimage").attr("src", "icons/Class/" + person.class + ".svg");
     $('#name').text(person.name);
-
+    $('#raceinfo').text(person.race);
+    $('#classinfo').text(person.class);
     //Stats Section
     $('#level').html("Level: " + person.level + "<br>" + "XP: " + person.xp);
     $('.money > h2').text("$" + person.money);
@@ -126,67 +129,69 @@ function loadprofile(person) {
     //Equipment Section
     $.each(person.equipment, function (key, value) {
         $('#equipmentlist').append(
-            "<button type='button' class='list-group-item list-group-item-action' value='" + value + "'>" + value + "</button>"
+            "<button type='button' id='" + clean_string(value) + "'class='list-group-item list-group-item-action' value='" + clean_string(value) + "'>" + value + "</button>"
         );
     });
     //For equipment Buttons (Its an event listener)
     $("#equipmentlist > button").click(function (event) {
-        activate_loader();
-        // convert it to lowercase for API call
-        let equipmentname = this.value;
-        equipmentname = equipmentname.replace(/\s/g, "-").toLowerCase();
-        async function display_equipalert(equipment) {
-            try {
-                let equipmentdata = await construct_equipmentinfo(equipment);
-                console.log(equipmentdata)
-                deactivate_loader();
-                console.log("display_alert : recieved");
-                alert(
-                    "Name: " + equipmentdata.name + "\n" +
-                    "Equipment Category: " + equipmentdata.equipment_category + "\n" +
-                    "Cost: " + equipmentdata.cost.quantity + " " + equipmentdata.cost.unit + "\n" +
-                    "Weight: " + equipmentdata.weight + "\n" +
-                    "Description: " + equipmentdata.desc + "\n"
-                );
-            } catch (error) {
-                if (error == "Not Found") {
+        if (!window.equipmenteditor) {
+            activate_loader();
+            // convert it to lowercase for API call
+            let equipmentname = this.value;
+            equipmentname = equipmentname.replace(/\s/g, "-").toLowerCase();
+            async function display_equipalert(equipment) {
+                try {
+                    let equipmentdata = await construct_equipmentinfo(equipment);
+                    console.log(equipmentdata)
                     deactivate_loader();
-                    alert("Equipment not found from API")
-                } else {
-                    deactivate_loader();
-                    alert("An error has occured more details: " + error);
-                }
+                    console.log("display_alert : recieved");
+                    alert(
+                        "Name: " + equipmentdata.name + "\n" +
+                        "Equipment Category: " + equipmentdata.equipment_category + "\n" +
+                        "Cost: " + equipmentdata.cost.quantity + " " + equipmentdata.cost.unit + "\n" +
+                        "Weight: " + equipmentdata.weight + "\n" +
+                        "Description: " + equipmentdata.desc + "\n"
+                    );
+                } catch (error) {
+                    if (error == "Not Found") {
+                        deactivate_loader();
+                        alert("Equipment not found from API")
+                    } else {
+                        deactivate_loader();
+                        alert("An error has occured more details: " + error);
+                    }
 
+                }
             }
+            display_equipalert(equipmentname);
         }
-        display_equipalert(equipmentname);
     });
 
     //languages section
     $.each(person.languages, function (key, value) {
         $('#languagelist > ol').append(
-            "<li class=\"list-group-item\">" + value + "</li>"
+            "<li class=\"list-group-item\" id='" + value + "' >" + value + "</li>"
         );
     });
 
     //features section
     $.each(person.features, function (key, value) {
         $('#featurelist > ol').append(
-            "<li class=\"list-group-item\">" + value + "</li>"
+            "<li class=\"list-group-item\" id='" + clean_string(value) + "'>" + value + "</li>"
         );
     });
 
     //Traits section
     $.each(person.traits, function (key, value) {
         $('#traitlist > ol').append(
-            "<li class=\"list-group-item\">" + value + "</li>"
+            "<li class=\"list-group-item\" id='" + clean_string(value) + "'>" + value + "</li>"
         );
     });
 
     //Ideal Section
     $.each(person.ideals, function (key, value) {
         $('#idealist > ol').append(
-            "<li class=\"list-group-item\">" + value + "</li>"
+            "<li class=\"list-group-item\" id='" + clean_string(value) + "'>" + value + "</li>"
         );
     });
 

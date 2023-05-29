@@ -82,5 +82,19 @@ function bootstrap_input(type, id, placeholder, value) {
 }
 
 function clean_string(string) {
-    return string.replace(/\s/g, "-").toLowerCase();
+    let string1 = string.replace(/\s/g, "-").toLowerCase();
+    string1 = string1.replace(/'/g, "")
+    string1 = string1.replaceAll(',', '');
+    string1 = string1.replaceAll('.', '');
+    string1 = string1.replaceAll('(', '');
+    string1 = string1.replaceAll(')', '');
+    string1 = string1.replaceAll('/', '');
+    string1 = string1.replaceAll('"', '');
+    string1 = string1.replaceAll('!', '');
+    string1 = string1.replaceAll('?', '');
+    string1 = string1.replaceAll(':', '');
+    string1 = string1.replaceAll(';', '');
+    string1 = string1.replaceAll('“', '');
+    string1 = string1.replaceAll('”', '');
+    return string1;
 }

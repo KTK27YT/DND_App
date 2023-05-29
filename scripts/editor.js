@@ -20,6 +20,7 @@ async function profile_editor(person) {
     //turns the Level and XP and adds a dropdown to change the race
     //#level
     let races_input = "";
+    let class_input = "";
     try {
         races_input = "<select class='form-select' id='raceinput'>";
         const races = await construct_config("Race");
@@ -27,13 +28,19 @@ async function profile_editor(person) {
             races_input += "<option value='" + value + "'>" + value + "</option>";
         });
         races_input += "</select>";
+        class_input = "<select class='form-select' id='classinput'>";
+        const classes = await construct_config("Class");
+        $.each(classes, function (key, value) {
+            class_input += "<option value='" + value + "'>" + value + "</option>";
+        });
+        class_input += "</select>";
     } catch (error) {
         console.log(error);
         alert(error);
         return error;
     }
     $('#level').html(bootstrap_input("number", "levelinput", "level", person.level) +
-        bootstrap_input("number", "xpinput", "xp", person.xp) + races_input);
+        bootstrap_input("number", "xpinput", "xp", person.xp) + races_input + class_input);
     //reveal the edit buttons
     $('.profile_editor_btns').slideDown();
 }
@@ -146,24 +153,152 @@ async function spell_editor(person) {
     });
 }
 
-function equipment_editor() {
-
+async function equipment_editor(person) {
+    window.equipment = person.equipment;
+    console.log(window.equipment);
+    console.log(person.equipment);
+    window.equipmenteditor = true;
+    console.log(window.equipment);
+    // $('#equipmentlist').slideUp();
+    try {
+        window.equipment_list = await construct_config("Equipment");
+        $.each(window.equipment, function (key, value) {
+            let equipment_element_id = "#" + clean_string(value);
+            $(equipment_element_id).html(value + "<button style='margin-left: 15px' type=\"button\" class=\"btn btn-outline-danger equipment_btn_delete\" value='" + clean_string(value) + "'>" +
+                "<img src=\"./icons/general/trash.svg\" alt=\"trash\" width=\"16\" height=\"16\">" +
+                "</button>");
+        });
+    } catch (error) {
+        console.log(error);
+        alert(error);
+        return error;
+    }
+    $('.equipment_editor_btns').slideDown();
+    $('.equipment_btn_delete').on('click', function () {
+        let equipmentval = $(this).attr('value');
+        console.log(equipmentval);
+        console.log(window.equipment);
+        window.equipment = $.grep(equipment, function (value) {
+            return clean_string(value) != String(equipmentval);
+        });
+        console.log(window.equipment);
+        $(this).parent().remove();
+    });
 }
 
-function language_editor() {
-
+async function language_editor(person) {
+    window.language = person.languages;
+    console.log(window.language);
+    try {
+        window.language_list = await construct_config("Languages");
+        console.log(window.language_list);
+        $.each(window.language, function (key, value) {
+            let language_element_id = "#" + value;
+            $(language_element_id).html(value + "<button style='margin-left: 15px' type=\"button\" class=\"btn btn-outline-danger language_btn_delete\" value='" + clean_string(value) + "'>" +
+                "<img src=\"./icons/general/trash.svg\" alt=\"trash\" width=\"16\" height=\"16\">" +
+                "</button>");
+        });
+    } catch (error) {
+        console.log(error);
+        alert(error);
+        return error;
+    }
+    $('.Language_editor_btns').slideDown();
+    $('.language_btn_delete').on('click', function () {
+        let languageval = $(this).attr('value');
+        console.log(languageval);
+        console.log(window.language);
+        window.language = $.grep(language, function (value) {
+            return clean_string(value) != String(languageval);
+        });
+        console.log(window.language);
+        $(this).parent().remove();
+    }
+    );
 }
 
-function features_editor() {
-
+async function feature_editor(person) {
+    window.feature = person.features;
+    console.log(window.feature);
+    try {
+        window.feature_list = await construct_config("Features")
+        console.log(window.feature_list);
+        $.each(window.feature, function (key, value) {
+            let feature_element_id = "#" + clean_string(value);
+            $(feature_element_id).html(value + "<button style='margin-left: 15px' type=\"button\" class=\"btn btn-outline-danger feature_btn_delete\" value='" + clean_string(value) + "'>" +
+                "<img src=\"./icons/general/trash.svg\" alt=\"trash\" width=\"16\" height=\"16\">" +
+                "</button>");
+        });
+    } catch (error) {
+        console.log(error);
+        alert(error);
+        return error;
+    }
+    $('.Features_editor_btns').slideDown();
+    $('.feature_btn_delete').on('click', function () {
+        let featureval = $(this).attr('value');
+        console.log(featureval);
+        console.log(window.feature);
+        window.feature = $.grep(feature, function (value) {
+            return clean_string(value) != String(featureval);
+        });
+        console.log(window.feature);
+        $(this).parent().remove();
+    });
 }
 
-function traits_editor() {
-
+function trait_editor(person) {
+    window.traits = person.traits;
+    try {
+        $.each(window.traits, function (key, value) {
+            let trait_element_id = "#" + clean_string(value);
+            $(trait_element_id).html(value + "<button style='margin-left: 15px' type=\"button\" class=\"btn btn-outline-danger trait_btn_delete\" value='" + clean_string(value) + "'>" +
+                "<img src=\"./icons/general/trash.svg\" alt=\"trash\" width=\"16\" height=\"16\">" +
+                "</button>");
+        });
+    } catch (error) {
+        console.log(error);
+        alert(error);
+        return error;
+    }
+    $('.Traits_editor_btns').slideDown();
+    $('.trait_btn_delete').on('click', function () {
+        let traitval = $(this).attr('value');
+        console.log(traitval);
+        console.log(window.traits);
+        window.traits = $.grep(traits, function (value) {
+            return clean_string(value) != String(traitval);
+        });
+        console.log(window.traits);
+        $(this).parent().remove();
+    });
 }
 
-function ideals_editor() {
-
+function ideal_editor(person) {
+    window.ideals = person.ideals;
+    try {
+        $.each(window.ideals, function (key, value) {
+            let ideal_element_id = "#" + clean_string(value);
+            $(ideal_element_id).html(value + "<button style='margin-left: 15px' type=\"button\" class=\"btn btn-outline-danger ideal_btn_delete\" value='" + clean_string(value) + "'>" +
+                "<img src=\"./icons/general/trash.svg\" alt=\"trash\" width=\"16\" height=\"16\">" +
+                "</button>");
+        });
+    } catch (error) {
+        console.log(error);
+        alert(error);
+        return error;
+    }
+    $('.Ideals_editor_btns').slideDown();
+    $('.ideal_btn_delete').on('click', function () {
+        let idealval = $(this).attr('value');
+        console.log(idealval);
+        console.log(window.ideals);
+        window.ideals = $.grep(ideals, function (value) {
+            return clean_string(value) != String(idealval);
+        });
+        console.log(window.ideals);
+        $(this).parent().remove();
+    });
 }
 
 function save_profile_router(value, selected_profile) {
@@ -248,13 +383,48 @@ function skillchecklist() {
 }
 
 function spell_add() {
-    var spells_dropdown_list = "<select class='form-select spell_input' id='spellsinput'>";
+    var spells_dropdown_list = "<select class='dropdown form-select spell_input' id='spellsinput' data-live-search='true'>";
     $.each(spells_list, function (key, value) {
-        spells_dropdown_list += "<option value='" + value + "'>" + value + "</option>";
+        spells_dropdown_list += "<option data-tokens='" + value + "' value='" + value + "'>" + value + "</option>";
     });
     spells_dropdown_list += "</select>";
     $('#spellslist').append(spells_dropdown_list);
 }
+
+function equipment_add() {
+    var equipment_dropdown_list = "<select class='dropdown form-select equipment_input' id='equipmentinput' data-live-search='true'>";
+    $.each(equipment_list, function (key, value) {
+        equipment_dropdown_list += "<option data-tokens='" + value + "' value='" + value + "'>" + value + "</option>";
+    });
+    equipment_dropdown_list += "</select>";
+    $('#equipmentlist').append(equipment_dropdown_list);
+}
+
+function language_add() {
+    var language_dropdown_list = "<select class='dropdown form-select language_input' id='languageinput' data-live-search='true'>";
+    $.each(window.language_list, function (key, value) {
+        language_dropdown_list += "<option data-tokens='" + value + "' value='" + value + "'>" + value + "</option>";
+    });
+    language_dropdown_list += "</select>";
+    $('#languagelist').append(language_dropdown_list);
+}
+
+function feature_add() {
+    var feature_dropdown_list = "<select class='dropdown form-select feature_input' id='featureinput' data-live-search='true'>";
+    $.each(window.feature_list, function (key, value) {
+        feature_dropdown_list += "<option data-tokens='" + value + "' value='" + value + "'>" + value + "</option>";
+    });
+    feature_dropdown_list += "</select>";
+    $('#featurelist').append(feature_dropdown_list);
+}
+
+function trait_add() {
+    $('#traitlist').append(bootstrap_input("text", "trait_input", "trait", ""));
+}
+
+function ideal_add() {
+    $('#idealist').append(bootstrap_input("text", "ideal_input", "ideal", ""));
+};
 
 //This function routes the edit buttons to the correct editor
 function editor_profile_router(value, person) {
