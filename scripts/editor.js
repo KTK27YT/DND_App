@@ -16,7 +16,7 @@ $('.edit_btn').on('click', async function () {
 });
 
 
-async function profile_editor(person) {
+async function profile_editor(person, editor) {
     //turns the Level and XP and adds a dropdown to change the race
     //#level
     let races_input = "";
@@ -39,13 +39,18 @@ async function profile_editor(person) {
         alert(error);
         return error;
     }
-    $('#level').html(bootstrap_input("number", "levelinput", "level", person.level) +
-        bootstrap_input("number", "xpinput", "xp", person.xp) + races_input + class_input);
-    //reveal the edit buttons
-    $('.profile_editor_btns').slideDown();
+    if (editor) {
+        $('#level').html(bootstrap_input("number", "levelinput", "level", person.level) +
+            bootstrap_input("number", "xpinput", "xp", person.xp) + races_input + class_input);
+        //reveal the edit buttons
+        $('.profile_editor_btns').slideDown();
+    } else {
+        $('#level').html(bootstrap_input("number", "levelinput", "level", "") +
+            bootstrap_input("number", "xpinput", "xp", "") + races_input + class_input);
+    }
 }
 
-function stats_editor(person) {
+function stats_editor(person, editor) {
     $('#strength').html(bootstrap_input("number", "strengthinput", "strength", person.str));
     $('#dexterity').html(bootstrap_input("number", "dexterityinput", "dexterity", person.dex));
     $('#constitution').html(bootstrap_input("number", "constitutioninput", "constitution", person.con));
@@ -53,24 +58,28 @@ function stats_editor(person) {
     $('#wisdom').html(bootstrap_input("number", "wisdominput", "wisdom", person.wis));
     $('#charisma').html(bootstrap_input("number", "charismainput", "charisma", person.cha));
     $('.money > h2').html(bootstrap_input("number", "moneyinput", "money", person.money));
-    $('.stats_editor_btns').slideDown();
+    if (editor) {
+        $('.stats_editor_btns').slideDown();
+    }
 }
 
 function spell_editor() {
 
 }
 
-async function skill_editor(person) {
+async function skill_editor(person, editor) {
     window.skills = person.skills;
-    $('.skill-info > table').slideUp();
+    if (editor) { $('.skill-info > table').slideUp(); }
     try {
         const skills_list = await construct_config("Skills");
         var skill_check_html = "<div class='list-group skills'>"
         $.each(skills_list, function (key, value) {
             var classlist = "";
-            if (skills.includes(value)) {
-                classlist = "list-group-item list-group-item-action active";
-            } else { classlist = "list-group-item list-group-item-action"; }
+            if (editor) {
+                if (skills.includes(value)) {
+                    classlist = "list-group-item list-group-item-action active";
+                } else { classlist = "list-group-item list-group-item-action"; }
+            } else { classList = "list-group-item list-group-item-action"; }
             skill_check_html += "<a class='" + classlist + "' id='" + value + "'>" + value + "</a>";
         });
         skill_check_html += "</div>";
@@ -81,7 +90,7 @@ async function skill_editor(person) {
         alert(error);
         return error;
     }
-    $('.skills_editor_btns').slideDown();
+    if (editor) { $('.skills_editor_btns').slideDown(); };
     $('.skills > .list-group-item').on('click', function () {
         let classlist = $(this).attr("class");
         let index = $(this).attr("id");
@@ -368,7 +377,6 @@ $('.cancel_btn').on('click', function () {
 });
 
 
-
 function skillchecklist() {
     let classlist = $(this).attr("class");
     if (classlist.includes("active")) {
@@ -430,13 +438,13 @@ function ideal_add() {
 function editor_profile_router(value, person) {
     switch (value) {
         case "Profile":
-            profile_editor(person);
+            profile_editor(person, true);
             break;
         case "Stats":
-            stats_editor(person);
+            stats_editor(person, true);
             break;
         case "Skills":
-            skill_editor(person);
+            skill_editor(person, true);
             break;
         case "Spells":
             spell_editor(person);

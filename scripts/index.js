@@ -10,7 +10,8 @@ $(document).ready(function () {
 //links the ahref tag
 $('#homelink').attr('href', __dirname + "/index.html");
 
-
+//links the create profile tag
+$('#addprofile').attr('href', __dirname + "/create.html")
 
 
 //read profile.json
