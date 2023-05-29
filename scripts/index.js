@@ -7,12 +7,14 @@ $(document).ready(function () {
     deactivate_loader();
 });
 
+//links the ahref tag
+$('#homelink').attr('href', __dirname + "/index.html");
 
 
 
 
 //read profile.json
-$.getJSON('data/profile.json', (data) => {
+$.getJSON(__dirname + '/data/profile.json', (data) => {
     // console.log(data);
     //append to options
     $.each(data, function (key) {

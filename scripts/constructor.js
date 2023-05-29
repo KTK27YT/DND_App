@@ -9,7 +9,7 @@ function construct_profile(selected_profile) {
     return new Promise((resolve, reject) => {
         const person = new Object();
         try {
-            $.getJSON('data/profile.json', (data) => {
+            $.getJSON(__dirname + '/data/profile.json', (data) => {
                 let innerdata = data[selected_profile][0];
                 $.each(innerdata, function (key, value) {
                     person[key] = value;
@@ -73,7 +73,7 @@ function construct_config(config_type) {
     return new Promise((resolve, reject) => {
         console.log("Construct Config: Running");
         try {
-            $.getJSON('data/config.json', (data) => {
+            $.getJSON(__dirname + '/data/config.json', (data) => {
                 let innerdata = data[config_type];
                 console.log(innerdata);
                 resolve(innerdata);
