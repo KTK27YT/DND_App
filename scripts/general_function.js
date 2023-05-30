@@ -77,7 +77,7 @@ function deactivate_loader() {
 //function returns back a bootstrap input field with
 function bootstrap_input(type, id, placeholder, value) {
     return "<div class=\"mb-3\">" +
-        "<input type=\"" + type + "\" class=\"form-control\" id=\"" + id + "\" placeholder=\"" + placeholder + "\" value=\"" + value + "\">" +
+        "<input type=\"" + type + "\" class=\"form-control " + id + "\" id=\"" + id + "\" placeholder=\"" + placeholder + "\" value=\"" + value + "\">" +
         "</div>";
 }
 

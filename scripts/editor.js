@@ -69,6 +69,7 @@ function spell_editor() {
 
 async function skill_editor(person, editor) {
     window.skills = person.skills;
+    if (!editor) { window.skills = []; }
     if (editor) { $('.skill-info > table').slideUp(); }
     try {
         const skills_list = await construct_config("Skills");
@@ -79,7 +80,8 @@ async function skill_editor(person, editor) {
                 if (skills.includes(value)) {
                     classlist = "list-group-item list-group-item-action active";
                 } else { classlist = "list-group-item list-group-item-action"; }
-            } else { classList = "list-group-item list-group-item-action"; }
+            }
+            if (!editor) { classlist = "list-group-item list-group-item-action"; }
             skill_check_html += "<a class='" + classlist + "' id='" + value + "'>" + value + "</a>";
         });
         skill_check_html += "</div>";
@@ -113,11 +115,12 @@ async function skill_editor(person, editor) {
     })
 }
 
-async function spell_editor(person) {
+async function spell_editor(person, editor) {
     window.spells = person.spells;
     window.spelleditor = true;
     console.log(window.spells);
-    $('.spellslist').slideUp();
+    if (!editor) { window.spells = []; }
+    if (editor) { $('.spellslist').slideUp(); }
     try {
         window.spells_list = await construct_config("Spells");
         $.each(window.spells, function (key, value) {
@@ -131,7 +134,7 @@ async function spell_editor(person) {
         alert(error);
         return error;
     }
-    $('.spells_editor_btns').slideDown();
+    if (editor) { $('.spells_editor_btns').slideDown(); }
     $('.spells > .list-group-item').on('click', function () {
         let classlist = $(this).attr("class");
         let index = $(this).attr("id");
@@ -162,12 +165,13 @@ async function spell_editor(person) {
     });
 }
 
-async function equipment_editor(person) {
+async function equipment_editor(person, editor) {
     window.equipment = person.equipment;
     console.log(window.equipment);
     console.log(person.equipment);
     window.equipmenteditor = true;
     console.log(window.equipment);
+    if (!editor) { window.equipment = []; }
     // $('#equipmentlist').slideUp();
     try {
         window.equipment_list = await construct_config("Equipment");
@@ -182,7 +186,7 @@ async function equipment_editor(person) {
         alert(error);
         return error;
     }
-    $('.equipment_editor_btns').slideDown();
+    if (editor) { $('.equipment_editor_btns').slideDown(); }
     $('.equipment_btn_delete').on('click', function () {
         let equipmentval = $(this).attr('value');
         console.log(equipmentval);
@@ -195,9 +199,10 @@ async function equipment_editor(person) {
     });
 }
 
-async function language_editor(person) {
+async function language_editor(person, editor) {
     window.language = person.languages;
     console.log(window.language);
+    if (!editor) { window.language = []; }
     try {
         window.language_list = await construct_config("Languages");
         console.log(window.language_list);
@@ -212,7 +217,7 @@ async function language_editor(person) {
         alert(error);
         return error;
     }
-    $('.Language_editor_btns').slideDown();
+    if (editor) { $('.Language_editor_btns').slideDown(); }
     $('.language_btn_delete').on('click', function () {
         let languageval = $(this).attr('value');
         console.log(languageval);
@@ -226,9 +231,10 @@ async function language_editor(person) {
     );
 }
 
-async function feature_editor(person) {
+async function feature_editor(person, editor) {
     window.feature = person.features;
     console.log(window.feature);
+    if (!editor) { window.feature = []; }
     try {
         window.feature_list = await construct_config("Features")
         console.log(window.feature_list);
@@ -243,7 +249,7 @@ async function feature_editor(person) {
         alert(error);
         return error;
     }
-    $('.Features_editor_btns').slideDown();
+    if (editor) { $('.Features_editor_btns').slideDown(); }
     $('.feature_btn_delete').on('click', function () {
         let featureval = $(this).attr('value');
         console.log(featureval);
@@ -256,8 +262,9 @@ async function feature_editor(person) {
     });
 }
 
-function trait_editor(person) {
+function trait_editor(person, editor) {
     window.traits = person.traits;
+    if (!editor) { window.traits = []; }
     try {
         $.each(window.traits, function (key, value) {
             let trait_element_id = "#" + clean_string(value);
@@ -270,7 +277,7 @@ function trait_editor(person) {
         alert(error);
         return error;
     }
-    $('.Traits_editor_btns').slideDown();
+    if (editor) { $('.Traits_editor_btns').slideDown(); }
     $('.trait_btn_delete').on('click', function () {
         let traitval = $(this).attr('value');
         console.log(traitval);
@@ -283,8 +290,9 @@ function trait_editor(person) {
     });
 }
 
-function ideal_editor(person) {
+function ideal_editor(person, editor) {
     window.ideals = person.ideals;
+    if (!editor) { window.ideals = []; }
     try {
         $.each(window.ideals, function (key, value) {
             let ideal_element_id = "#" + clean_string(value);
@@ -297,7 +305,7 @@ function ideal_editor(person) {
         alert(error);
         return error;
     }
-    $('.Ideals_editor_btns').slideDown();
+    if (editor) { $('.Ideals_editor_btns').slideDown(); }
     $('.ideal_btn_delete').on('click', function () {
         let idealval = $(this).attr('value');
         console.log(idealval);
@@ -447,22 +455,22 @@ function editor_profile_router(value, person) {
             skill_editor(person, true);
             break;
         case "Spells":
-            spell_editor(person);
+            spell_editor(person, true);
             break;
         case "Equipment":
-            equipment_editor(person);
+            equipment_editor(person, true);
             break;
         case "Language":
-            language_editor(person);
+            language_editor(person, true);
             break;
         case "Features":
-            feature_editor(person);
+            feature_editor(person, true);
             break;
         case "Traits":
-            trait_editor(person);
+            trait_editor(person, true);
             break;
         case "Ideals":
-            ideal_editor(person);
+            ideal_editor(person, true);
             break;
         default:
             break;

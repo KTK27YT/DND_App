@@ -152,5 +152,127 @@
         "Self-Improvement. The goal of a life of study is the betterment of oneself."
       ]
     }
+  ],
+  "Sins": [
+    {
+      "money": 123653,
+      "name": "Sins",
+      "race": "Air Genasi",
+      "gender": "male",
+      "class": "Cleric",
+      "Adventure_League": "Curse of Strahd",
+      "faction": "Zhentarim",
+      "Ravnica Guild": "Azorius",
+      "level": 9,
+      "xp": 54,
+      "hp": 6,
+      "ac": 10,
+      "str": 235,
+      "dex": 345,
+      "con": 213,
+      "int": 3254,
+      "wis": 253,
+      "cha": 253,
+      "skills": [
+        "Acrobatics",
+        "Intimidation",
+        "Arcana",
+        "History",
+        "Insight",
+        "Performance",
+        "Medicine",
+        "Stealth",
+        "Nature",
+        "Religion"
+      ],
+      "spells": [
+        "Acid Splash",
+        "Bane"
+      ],
+      "equipment": [
+        "Light hammer",
+        "Club"
+      ],
+      "languages": [
+        "Dwarvish",
+        "Common"
+      ],
+      "features": [
+        "Rage",
+        "Reckless Attack"
+      ],
+      "traits": [
+        "Test1235",
+        "Trait124"
+      ],
+      "ideals": [
+        "Ideal2",
+        "test123"
+      ]
+    }
+  ],
+  "God": [
+    {
+      "money": 999999999999,
+      "name": "God",
+      "race": "Air Genasi",
+      "gender": "male",
+      "class": "Artificer",
+      "Adventure_League": "Curse of Strahd",
+      "faction": "Zhentarim",
+      "Ravnica Guild": "Azorius",
+      "level": 999,
+      "xp": 9999,
+      "hp": 6,
+      "ac": 10,
+      "str": 99,
+      "dex": 99,
+      "con": 99,
+      "int": 99,
+      "wis": 99,
+      "cha": 99,
+      "skills": [
+        "Acrobatics",
+        "Animal Handling",
+        "Athletics",
+        "Arcana",
+        "Deception",
+        "History",
+        "Insight",
+        "Intimidation",
+        "Investigation",
+        "Medicine",
+        "Nature",
+        "Perception",
+        "Performance",
+        "Persuasion",
+        "Religion",
+        "Sleight of Hand",
+        "Stealth",
+        "Survival"
+      ],
+      "spells": [
+        "Protection from Evil and Good",
+        "Detect Evil and Good"
+      ],
+      "equipment": [
+        "Stabling (1 day)",
+        "Spear",
+        "Crossbow, light"
+      ],
+      "languages": [
+        "Common"
+      ],
+      "features": [
+        "Rage"
+      ],
+      "traits": [
+        "He is god",
+        "Yeet"
+      ],
+      "ideals": [
+        "He is god himself his ideal is himself"
+      ]
+    }
   ]
 }
