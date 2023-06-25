@@ -1,6 +1,6 @@
 // This saves all the info from the creator
 const fs = require('fs');
-const filename = './data/profile.json';
+const filename = __dirname + '/data/profile.json';
 const file = require(filename);
 
 //takes all the data and then saves it 10/10

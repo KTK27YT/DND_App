@@ -2,7 +2,7 @@
 
 //we declare these constants as all functions use them
 const fs = require('fs');
-const filename = './data/profile.json';
+const filename = __dirname + '/data/profile.json';
 const file = require(filename);
 
 
@@ -31,10 +31,10 @@ async function profile_save(selected_profile) {
                     if (err) return console.log(err);
                     console.log(JSON.stringify(file));
                     console.log('writing to ' + filename);
+                    alert("Profile saved");
+                    location.reload();
+                    resolve("Profile saved");
                 });
-                alert("Profile saved");
-                location.reload();
-                resolve("Profile saved");
             } catch (error) {
                 console.log("While saving the profile section an error occured: " + error);
                 alert(error);
@@ -76,10 +76,11 @@ async function stats_save(selected_profile) {
                 if (err) return console.log(err);
                 console.log(JSON.stringify(file));
                 console.log('writing to ' + filename);
+                alert("stats saved");
+                location.reload();
+                resolve("Stats saved");
             });
-            alert("stats saved");
-            location.reload();
-            resolve("Stats saved");
+
         } catch (error) {
             console.log("While saving the stats section an error occured: " + error);
             alert(error);
@@ -98,10 +99,11 @@ async function skill_save(selected_profile) {
                 if (err) return console.log(err);
                 console.log(JSON.stringify(file));
                 console.log('writing to ' + filename);
+                alert("skills saved");
+                location.reload();
+                resolve("Skills saved");
             });
-            alert("skills saved");
-            location.reload();
-            resolve("Skills saved");
+
         } catch (error) {
             console.log("While saving the skills section an error occured: " + error);
             alert(error);
@@ -128,10 +130,11 @@ function spell_save(selected_profile) {
                 if (err) return console.log(err);
                 console.log(JSON.stringify(file));
                 console.log('writing to ' + filename);
+                alert("spells saved");
+                location.reload();
+                resolve("Spells saved");
             });
-            alert("spells saved");
-            location.reload();
-            resolve("Spells saved");
+
         } catch (error) {
             console.log("While saving the spells section an error occured: " + error);
             alert(error);
@@ -156,10 +159,11 @@ function equipment_save(selected_profile) {
                 if (err) return console.log(err);
                 console.log(JSON.stringify(file));
                 console.log('writing to ' + filename);
+                alert("equipment saved");
+                location.reload();
+                resolve("Equipment saved");
             });
-            alert("equipment saved");
-            location.reload();
-            resolve("Equipment saved");
+
         } catch (error) {
             console.log("While saving the equipment section an error occured: " + error);
             alert(error);
@@ -184,10 +188,11 @@ function language_save(selected_profile) {
                 if (err) return console.log(err);
                 console.log(JSON.stringify(file));
                 console.log('writing to ' + filename);
+                alert("languages saved");
+                resolve("Languages saved");
+                location.reload();
             });
-            alert("languages saved");
-            resolve("Languages saved");
-            location.reload();
+
         } catch (error) {
             console.log("While saving the language section an error occured: " + error);
             alert(error);
@@ -211,10 +216,11 @@ function feature_save(selected_profile) {
                 if (err) return console.log(err);
                 console.log(JSON.stringify(file));
                 console.log('writing to ' + filename);
+                alert("features saved");
+                resolve("Features saved");
+                location.reload();
             });
-            alert("features saved");
-            resolve("Features saved");
-            location.reload();
+
         } catch (error) {
             console.log("While saving the feature section an error occured: " + error);
             alert(error);
@@ -238,10 +244,11 @@ function trait_save(selected_profile) {
                 if (err) return console.log(err);
                 console.log(JSON.stringify(file));
                 console.log('writing to ' + filename);
+                alert("traits saved");
+                resolve("Traits saved");
+                location.reload();
             });
-            alert("traits saved");
-            resolve("Traits saved");
-            location.reload();
+
         } catch (error) {
             console.log("While saving the trait section an error occured: " + error);
             alert(error);
@@ -265,10 +272,11 @@ function ideal_save(selected_profile) {
                 if (err) return console.log(err);
                 console.log(JSON.stringify(file));
                 console.log('writing to ' + filename);
+                alert("ideals saved");
+                resolve("Ideals saved");
+                location.reload();
             });
-            alert("ideals saved");
-            resolve("Ideals saved");
-            location.reload();
+
         } catch (error) {
             console.log("While saving the ideal section an error occured: " + error);
             alert(error);
