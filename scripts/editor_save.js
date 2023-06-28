@@ -23,17 +23,27 @@ async function profile_save(selected_profile) {
                 console.log(selected_profile);
                 console.log(file);
                 console.log(file[selected_profile]);
+                console.log(__dirname);
                 file[selected_profile][0]["level"] = parseInt(new_level, 10);
                 file[selected_profile][0]["xp"] = parseInt(new_xp, 10);
                 file[selected_profile][0]["race"] = new_race;
                 file[selected_profile][0]["class"] = new_class;
+                let newperson = new Object();
+                let innerdata = file[selected_profile][0];
+                $.each(innerdata, function (key, value) {
+                    newperson[key] = value;
+                });
+                console.log(newperson);
                 fs.writeFile(filename, JSON.stringify(file, null, 2), function writeJSON(err) {
                     if (err) return console.log(err);
                     console.log(JSON.stringify(file));
                     console.log('writing to ' + filename);
-                    alert("Profile saved");
-                    location.reload();
+                    // alert("Profile saved");
+                    // location.reload();
+                    paint_profile();
+                    profile_loader(newperson);
                     resolve("Profile saved");
+                    deactivate_loader();
                 });
             } catch (error) {
                 console.log("While saving the profile section an error occured: " + error);
@@ -72,13 +82,21 @@ async function stats_save(selected_profile) {
             file[selected_profile][0]["wis"] = parseInt(new_wis, 10);
             file[selected_profile][0]["cha"] = parseInt(new_cha, 10);
             file[selected_profile][0]["money"] = parseInt(new_money, 10);
+            let newperson = new Object();
+            let innerdata = file[selected_profile][0];
+            $.each(innerdata, function (key, value) {
+                newperson[key] = value;
+            });
             fs.writeFile(filename, JSON.stringify(file, null, 2), function writeJSON(err) {
                 if (err) return console.log(err);
                 console.log(JSON.stringify(file));
                 console.log('writing to ' + filename);
-                alert("stats saved");
-                location.reload();
+                // alert("stats saved");
+                // location.reload();
+                paint_stats();
+                stats_loader(newperson);
                 resolve("Stats saved");
+                deactivate_loader();
             });
 
         } catch (error) {
@@ -95,13 +113,21 @@ async function skill_save(selected_profile) {
     return new Promise((resolve, reject) => {
         try {
             file[selected_profile][0]['skills'] = window.skills;
+            let newperson = new Object();
+            let innerdata = file[selected_profile][0];
+            $.each(innerdata, function (key, value) {
+                newperson[key] = value;
+            });
             fs.writeFile(filename, JSON.stringify(file, null, 2), function writeJSON(err) {
                 if (err) return console.log(err);
                 console.log(JSON.stringify(file));
                 console.log('writing to ' + filename);
-                alert("skills saved");
-                location.reload();
+                // alert("skills saved");
+                // location.reload();
+                paint_skills();
+                skill_loader(newperson);
                 resolve("Skills saved");
+                deactivate_loader();
             });
 
         } catch (error) {
@@ -126,13 +152,21 @@ function spell_save(selected_profile) {
                 spell_added.push($(this).val());
             });
             file[selected_profile][0]['spells'] = spell_added;
+            let newperson = new Object();
+            let innerdata = file[selected_profile][0];
+            $.each(innerdata, function (key, value) {
+                newperson[key] = value;
+            });
             fs.writeFile(filename, JSON.stringify(file, null, 2), function writeJSON(err) {
                 if (err) return console.log(err);
                 console.log(JSON.stringify(file));
                 console.log('writing to ' + filename);
-                alert("spells saved");
-                location.reload();
+                // alert("spells saved");
+                // location.reload();
+                paint_spells();
+                spell_loader(newperson);
                 resolve("Spells saved");
+                deactivate_loader();
             });
 
         } catch (error) {
@@ -155,13 +189,21 @@ function equipment_save(selected_profile) {
                 equipment_added.push($(this).val());
             });
             file[selected_profile][0]['equipment'] = equipment_added;
+            let newperson = new Object();
+            let innerdata = file[selected_profile][0];
+            $.each(innerdata, function (key, value) {
+                newperson[key] = value;
+            });
             fs.writeFile(filename, JSON.stringify(file, null, 2), function writeJSON(err) {
                 if (err) return console.log(err);
                 console.log(JSON.stringify(file));
                 console.log('writing to ' + filename);
-                alert("equipment saved");
-                location.reload();
+                // alert("equipment saved");
+                // location.reload();
+                paint_equipment();
+                equipment_loader(newperson);
                 resolve("Equipment saved");
+                deactivate_loader();
             });
 
         } catch (error) {
@@ -184,13 +226,21 @@ function language_save(selected_profile) {
             }
             );
             file[selected_profile][0]['languages'] = language_added;
+            let newperson = new Object();
+            let innerdata = file[selected_profile][0];
+            $.each(innerdata, function (key, value) {
+                newperson[key] = value;
+            });
             fs.writeFile(filename, JSON.stringify(file, null, 2), function writeJSON(err) {
                 if (err) return console.log(err);
                 console.log(JSON.stringify(file));
                 console.log('writing to ' + filename);
-                alert("languages saved");
+                // alert("languages saved");
+                paint_language();
+                language_loader(newperson);
                 resolve("Languages saved");
-                location.reload();
+                deactivate_loader();
+                // location.reload();
             });
 
         } catch (error) {
@@ -212,13 +262,21 @@ function feature_save(selected_profile) {
                 feature_added.push($(this).val());
             });
             file[selected_profile][0]['features'] = feature_added;
+            let newperson = new Object();
+            let innerdata = file[selected_profile][0];
+            $.each(innerdata, function (key, value) {
+                newperson[key] = value;
+            });
             fs.writeFile(filename, JSON.stringify(file, null, 2), function writeJSON(err) {
                 if (err) return console.log(err);
                 console.log(JSON.stringify(file));
                 console.log('writing to ' + filename);
-                alert("features saved");
+                // alert("features saved");
+                paint_features();
+                feature_loader(newperson);
                 resolve("Features saved");
-                location.reload();
+                deactivate_loader();
+                // location.reload();
             });
 
         } catch (error) {
@@ -240,13 +298,21 @@ function trait_save(selected_profile) {
                 trait_added.push($(this).val());
             });
             file[selected_profile][0]['traits'] = trait_added;
+            let newperson = new Object();
+            let innerdata = file[selected_profile][0];
+            $.each(innerdata, function (key, value) {
+                newperson[key] = value;
+            });
             fs.writeFile(filename, JSON.stringify(file, null, 2), function writeJSON(err) {
                 if (err) return console.log(err);
                 console.log(JSON.stringify(file));
                 console.log('writing to ' + filename);
-                alert("traits saved");
+                // alert("traits saved");
+                paint_traits();
+                trait_loader(newperson);
                 resolve("Traits saved");
-                location.reload();
+                deactivate_loader();
+                // location.reload();
             });
 
         } catch (error) {
@@ -268,13 +334,21 @@ function ideal_save(selected_profile) {
                 ideal_added.push($(this).val());
             });
             file[selected_profile][0]['ideals'] = ideal_added;
+            let newperson = new Object();
+            let innerdata = file[selected_profile][0];
+            $.each(innerdata, function (key, value) {
+                newperson[key] = value;
+            });
             fs.writeFile(filename, JSON.stringify(file, null, 2), function writeJSON(err) {
                 if (err) return console.log(err);
                 console.log(JSON.stringify(file));
                 console.log('writing to ' + filename);
-                alert("ideals saved");
+                // alert("ideals saved");
+                paint_ideals();
+                ideal_loader(newperson);
                 resolve("Ideals saved");
-                location.reload();
+                deactivate_loader();
+                // location.reload();
             });
 
         } catch (error) {

@@ -1,22 +1,26 @@
 // The Goal of this script is to provide a simple editor
-
+window.Storedperson = "";
 
 // Creates an event listener to check if any edit buttons were clicked and route them
-$('.edit_btn').on('click', async function () {
-    try {
-        const person = await construct_profile($('#name').text());
-        console.log(this.value);
-        editor_profile_router(this.value, person);
-    } catch (error) {
-        console.log(error);
-        alert(error);
-        return error;
-    }
+function edit_listener() {
+    $('.edit_btn').on('click', async function () {
+        try {
+            const person = await construct_profile($('#name').text());
+            console.log(this.value);
+            editor_profile_router(this.value, person);
+        } catch (error) {
+            console.log(error);
+            alert(error);
+            return error;
+        }
 
-});
+    });
+
+}
 
 
 async function profile_editor(person, editor) {
+    window.Storedperson = person;
     //turns the Level and XP and adds a dropdown to change the race
     //#level
     let races_input = "";
@@ -51,6 +55,7 @@ async function profile_editor(person, editor) {
 }
 
 function stats_editor(person, editor) {
+    window.Storedperson = person;
     $('#strength').html(bootstrap_input("number", "strengthinput", "strength", person.str));
     $('#dexterity').html(bootstrap_input("number", "dexterityinput", "dexterity", person.dex));
     $('#constitution').html(bootstrap_input("number", "constitutioninput", "constitution", person.con));
@@ -63,11 +68,9 @@ function stats_editor(person, editor) {
     }
 }
 
-function spell_editor() {
-
-}
 
 async function skill_editor(person, editor) {
+    window.Storedperson = person;
     window.skills = person.skills;
     if (!editor) { window.skills = []; }
     if (editor) { $('.skill-info > table').slideUp(); }
@@ -116,6 +119,7 @@ async function skill_editor(person, editor) {
 }
 
 async function spell_editor(person, editor) {
+    window.Storedperson = person;
     window.spells = person.spells;
     window.spelleditor = true;
     console.log(window.spells);
@@ -166,6 +170,7 @@ async function spell_editor(person, editor) {
 }
 
 async function equipment_editor(person, editor) {
+    window.Storedperson = person;
     window.equipment = person.equipment;
     console.log(window.equipment);
     console.log(person.equipment);
@@ -200,6 +205,7 @@ async function equipment_editor(person, editor) {
 }
 
 async function language_editor(person, editor) {
+    window.Storedperson = person;
     window.language = person.languages;
     console.log(window.language);
     if (!editor) { window.language = []; }
@@ -232,6 +238,7 @@ async function language_editor(person, editor) {
 }
 
 async function feature_editor(person, editor) {
+    window.Storedperson = person;
     window.feature = person.features;
     console.log(window.feature);
     if (!editor) { window.feature = []; }
@@ -263,6 +270,7 @@ async function feature_editor(person, editor) {
 }
 
 function trait_editor(person, editor) {
+    window.Storedperson = person;
     window.traits = person.traits;
     if (!editor) { window.traits = []; }
     try {
@@ -291,6 +299,7 @@ function trait_editor(person, editor) {
 }
 
 function ideal_editor(person, editor) {
+    window.Storedperson = person;
     window.ideals = person.ideals;
     if (!editor) { window.ideals = []; }
     try {
@@ -321,6 +330,7 @@ function ideal_editor(person, editor) {
 function save_profile_router(value, selected_profile) {
     switch (value) {
         case "ProfileSave":
+            console.log(selected_profile);
             profile_save(selected_profile);
             break;
         case "StatsSave":
@@ -355,34 +365,117 @@ function save_profile_router(value, selected_profile) {
 
 
 //adds event listeners to all save buttons
-$('.save_btn').on('click', async function () {
-    $(this).html("<span class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>");
-    let id = this.value;
-    console.log(id);
-    try {
-        console.log($('#name').text());
-        let profile_saver = await save_profile_router(id, $('#name').text());
-        $(this).html("Save");
-        activate_loader();
-        // $('.profile_editor_btns').slideUp();
-        toast("DND", "Profile Saved!");
-        // console.log($('#name').text());
-        // initprofile($('#name').text());
-        // deactivate_loader();
-        //  alert("Profile Saved!");
-        //  location.reload();
-    } catch (error) {
-        console.log(error);
-        alert(error);
-        return error;
-    }
-});
+function save_listener() {
+    $('.save_btn').on('click', async function () {
+        $(this).html("<span class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>");
+        let id = this.value;
+        console.log(id);
+        try {
+            console.log($('#name').text());
+            let profile_saver = await save_profile_router(id, $('#name').text());
+            $(this).html("Save");
+            activate_loader();
+            // $('.profile_editor_btns').slideUp();
+            toast("DND", "Profile Saved!");
+            // console.log($('#name').text());
+            // initprofile($('#name').text());
+            // deactivate_loader();
+            //  alert("Profile Saved!");
+            //  location.reload();
+        } catch (error) {
+            console.log(error);
+            alert(error);
+            return error;
+        }
+    });
+}
 
+
+
+
+function cancel_listener() {
+    $('.cancel_btn').on('click', function () {
+        switch (this.value) {
+            case "ProfileCancel":
+                paint_profile();
+                profile_loader(Storedperson);
+                break;
+            case "StatsCancel":
+                paint_stats();
+                stats_loader(Storedperson);
+                break;
+            case "SkillCancel":
+                paint_skills();
+                skill_loader(Storedperson);
+                break;
+            case "SpellCancel":
+                paint_spells();
+                spell_loader(Storedperson);
+                break;
+            case "EquipmentCancel":
+                paint_equipment();
+                equipment_loader(Storedperson);
+                break;
+            case "LanguageCancel":
+                paint_language();
+                language_loader(Storedperson);
+                break;
+            case "FeatureCancel":
+                paint_features();
+                feature_loader(Storedperson);
+                break;
+            case "TraitCancel":
+                paint_traits();
+                trait_loader(Storedperson);
+                break;
+            case "IdealCancel":
+                paint_ideals();
+                ideal_loader(Storedperson);
+                break;
+            default:
+                break;
+        };
+    });
+}
 
 //adds event listeners to all cancel buttons
-$('.cancel_btn').on('click', function () {
-    location.reload();
-});
+
+// function add_listener() {
+//     $('.add_btn').on('click', function () {
+//         switch (this.value) {
+//             case "SpellsAdd":
+//                 spell_add();
+//                 break;
+//             case "EquipmentAdd":
+//                 equipment_add();
+//                 break;
+//             case "LanguageAdd":
+//                 language_add();
+//                 break;
+//             case "FeatureAdd":
+//                 feature_add();
+//                 break;
+//             case "TraitAdd":
+//                 trait_add();
+//                 break;
+//             case "IdealAdd":
+//                 ideal_add();
+//                 break;
+//             default:
+//                 break;
+//         };
+//     });
+
+
+// }
+
+
+function all_listeners() {
+    edit_listener();
+    save_listener();
+    cancel_listener();
+    // add_listener();
+}
 
 
 function skillchecklist() {
@@ -478,28 +571,6 @@ function editor_profile_router(value, person) {
 }
 
 //Add a new dropdown/row to element
-$('.add_btn').on('click', function () {
-    switch (this.value) {
-        case "SpellsAdd":
-            spell_add();
-            break;
-        case "EquipmentAdd":
-            equipment_add();
-            break;
-        case "LanguageAdd":
-            language_add();
-            break;
-        case "FeatureAdd":
-            feature_add();
-            break;
-        case "TraitAdd":
-            trait_add();
-            break;
-        case "IdealAdd":
-            ideal_add();
-            break;
-        default:
-            break;
-    };
-});
+
+
 

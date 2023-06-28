@@ -34,8 +34,6 @@ $("#select").click(function () {
 
 
 
-
-
 //initalises the constructor, awaits its initalises then calls the function
 //responsible for inputting and setting the elements in the DOM
 async function initprofile(profile) {
@@ -44,21 +42,25 @@ async function initprofile(profile) {
     try {
         let person = await construct_profile(profile);
         console.log("initprofile : recieved");
+        console.log(person);
         loadprofile(person);
     } catch (error) {
         alert("An error has occured more details: " + error);
     }
 }
-//displays output to the website
-function loadprofile(person) {
-    //Profile Section
+
+function profile_loader(person) {
     $('.char-info > h5').textContent = String(person.name);
     $("#raceimage").attr("src", "icons/Race/" + person.race + ".svg");
     $("#classimage").attr("src", "icons/Class/" + person.class + ".svg");
+    let html = "Level: " + person.level + "<br>" + "XP: " + person.xp;
+    $("#level").html(html);
     $('#name').text(person.name);
     $('#raceinfo').text(person.race);
     $('#classinfo').text(person.class);
-    //Stats Section
+}
+
+function stats_loader(person) {
     $('#level').html("Level: " + person.level + "<br>" + "XP: " + person.xp);
     $('.money > h2').text("$" + person.money);
     $('#strength').text(person.str);
@@ -73,8 +75,10 @@ function loadprofile(person) {
     $('#wisdom_mod').text(calculate_modfiier(person.wis));
     $('#charisma').text(person.cha);
     $('#charisma_mod').text(calculate_modfiier(person.cha));
+}
 
-    //Skills Section
+
+function skill_loader(person) {
     $.each(person.skills, function (key, value) {
         $('#skilltable').append(
             "<tr>" +
@@ -84,8 +88,10 @@ function loadprofile(person) {
             + "</tr>"
         );
     });
+};
 
-    //Spells Section
+
+function spell_loader(person) {
     $.each(person.spells, function (key, value) {
         $('#spellslist').append(
             "<button type='button' class='list-group-item list-group-item-action' id='" + clean_string(value) + "' value='" + value + "'>" + value + "</button>"
@@ -129,7 +135,9 @@ function loadprofile(person) {
         }
 
     });
-    //Equipment Section
+}
+
+function equipment_loader(person) {
     $.each(person.equipment, function (key, value) {
         $('#equipmentlist').append(
             "<button type='button' id='" + clean_string(value) + "'class='list-group-item list-group-item-action' value='" + clean_string(value) + "'>" + value + "</button>"
@@ -169,36 +177,67 @@ function loadprofile(person) {
             display_equipalert(equipmentname);
         }
     });
+};
 
-    //languages section
+function language_loader(person) {
     $.each(person.languages, function (key, value) {
         $('#languagelist > ol').append(
             "<li class=\"list-group-item\" id='" + value + "' >" + value + "</li>"
         );
     });
+}
 
-    //features section
+function feature_loader(person) {
     $.each(person.features, function (key, value) {
         $('#featurelist > ol').append(
             "<li class=\"list-group-item\" id='" + clean_string(value) + "'>" + value + "</li>"
         );
     });
+}
 
-    //Traits section
+function trait_loader(person) {
     $.each(person.traits, function (key, value) {
         $('#traitlist > ol').append(
             "<li class=\"list-group-item\" id='" + clean_string(value) + "'>" + value + "</li>"
         );
     });
+}
 
-    //Ideal Section
+function ideal_loader(person) {
     $.each(person.ideals, function (key, value) {
         $('#idealist > ol').append(
             "<li class=\"list-group-item\" id='" + clean_string(value) + "'>" + value + "</li>"
         );
     });
+}
 
+//displays output to the website
+function loadprofile(person) {
+    //Profile Section
+    profile_loader(person);
+    //Stats Section
+    stats_loader(person);
 
+    //Skills Section
+    skill_loader(person);
+
+    //Spells Section
+    spell_loader(person);
+
+    //Equipment Section
+    equipment_loader(person);
+
+    //languages section
+    language_loader(person);
+
+    //features section
+    feature_loader(person);
+
+    //Traits section
+    trait_loader(person);
+
+    //Ideal Section
+    ideal_loader(person);
 
     deactivate_loader();
 }
