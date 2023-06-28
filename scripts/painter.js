@@ -161,7 +161,7 @@ function paint_spells() {
         '                  <div class="container">' +
         '                    <button type="button" class="btn btn-success save_btn" value="SpellSave">Save</button>' +
         '                    <button type="button" class="btn btn-secondary cancel_btn" value="SpellCancel">Cancel</button>' +
-        '                    <button type="button" class="btn btn-primary add_btn" value="SpellsAdd">+</button>' +
+        '                    <button type="button" class="btn btn-primary add_btn" onclick="spell_add()" value="SpellsAdd">+</button>' +
         '                  </div>' +
         '                </div>' +
         '                </div>' +
